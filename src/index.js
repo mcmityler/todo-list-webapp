@@ -6,6 +6,9 @@ import ProjectManager from "./projectManager.js"
 const projectManager = new ProjectManager();
 projectManager.addProject("Flowstate");
 projectManager.addProject("Grind Time");
+projectManager.projects[1].addTodoTask({name: "Task at hand"});
+projectManager.projects[1].todoList[0].setCompleteness(true);
+projectManager.projects[1].deleteTodoTask(projectManager.projects[1].todoList[0].uniqueID);
 projectManager.logProjects();
 
 

@@ -1,10 +1,12 @@
 export default class ToDo{
-    constructor(name, description, dueDate, priority){
+    constructor(name, description = "", dueDate = "", priority = 5){
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
         this.completed = false; 
+        this.uniqueID = crypto.randomUUID();
+
     }
 
     setCompleteness(completed){
