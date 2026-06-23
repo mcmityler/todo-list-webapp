@@ -27,13 +27,14 @@
   --light-color: #ECEEDF;
   --delete-color: #c05555;
   --delete-active-color: #8f3d3d;
+  --dark-color: #291d0e;
 }
 
 body {
   background-color: var(--light-color);
   height: 100vh;
   font-family: "Allura", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: var
+  color: var(--dark-color)
 }
 h2{
   font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -111,6 +112,7 @@ h2{
   font-size: 1.1rem;
   background-color: var(--light-color);
   transition: all 0.2s ease;
+  color: var(--dark-color);
 }
 .project-delete:hover{
   background-color: var(--delete-color) ;
@@ -149,7 +151,7 @@ h2{
   background-color: var(--dark-blue);
   color: var(--light-color);
   border: none;
-  box-shadow: 2px 2px 4px black;
+  box-shadow: 2px 2px 4px var(--dark-color);
   border-radius: 5px;
   font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 1.3rem;
@@ -157,11 +159,11 @@ h2{
 }
 .new-project-button:hover{
   background-color: var(--blue);
-  color: black;
+  color: var(--dark-color);
 }
 .new-project-button:active{
   background-color: var(--light-color);
-  color: black;
+  color: var(--dark-color);
 }
 
 /* TO DO SECTIONS STYLING*/
@@ -247,7 +249,7 @@ h2{
   grid-template-rows: 20px 40px 1fr 40px 40px;
   padding: 5px;
   border: 3px solid var(--dark-blue);
-  box-shadow: 3px 3px 10px black;
+  box-shadow: 3px 3px 10px var(--dark-color);
   transition: all 0.2s ease;
 }
 .ongoing-task:hover{
@@ -285,7 +287,7 @@ h2{
 }
 .task-complete:hover, .task-edit:hover{
   background-color: var(--blue);
-  color: black;
+  color: var(--dark-color);
 
 }
 .task-complete:active, .task-edit:active{
@@ -300,6 +302,8 @@ h2{
   background-color: var(--light-color);
   border:none;
   border-radius: 3px;
+  color: var(--dark-color);
+
 }
 .task-delete:hover{
   background-color: var(--delete-color);
@@ -366,6 +370,7 @@ h2{
 .completed-date{
   grid-column: 2/3;
   grid-row: 1/-1;
+  pointer-events: none;
   place-self: center;
 }
 .completed-delete{
@@ -377,6 +382,8 @@ h2{
   background-color: var(--light-color);
   border:none;
   border-radius: 3px;
+  color: var(--dark-color);
+  transition: all 0.2s ease;
 }
 .completed-delete:hover{
   background-color: var(--delete-color);
@@ -386,4 +393,18 @@ h2{
 .completed-delete:active{
   background-color: var(--delete-active-color);
   color: var(--light-color);
+}
+
+/* NEW PROJECT DIALOG */
+#new-project-dialog{
+  position: absolute;
+  width: 400px;
+  height: 200px;
+  top: calc(50% - 250px);
+  left:calc(50% - 200px);
+  color: var(--dark-color);
+}
+#new-project-dialog i, #new-project-dialog button{
+  color: var(--dark-color);
+
 }
