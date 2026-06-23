@@ -25,12 +25,40 @@
         </div>
 
         <div class="todos-container">
-            <div class="ongoing-todos">
+            <div class="ongoing-container">
                 <h2>To Dos - Default</h2>
+                <div class="project-sort-container">
+                    <label for="project-sort-dropdown">Sort By: </label>
+                    <select name="project-sort-dropdown" id="project-sort-dropdown">
+                        <option value="default">Default</option>
+                    </select>
+                </div>
+                <div class="ongoing-todos">
+                    <div class="add-todo-container">
+                        <button aria-label="Add new to do task"></button>
+                        <div class="add-circle">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="ongoing-task">
+                        <p class="due-in">Due in 20 Days!</p>
+                        <p class="task-name">Task 1</p>
+                        <p class="task-priority">! ! !</p>
+                        <p class="task-description">Description</p>
+                        <p class="task-dueDate">Due Date: 01-01-2000</p>
+                        <button class="task-edit">Edit</button>
+                        <button class="task-complete">Mark Complete</button>
+                        <button class="task-delete"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
             </div>
             <div class="completed-todos">
                 <h2>Completed</h2>
-
+                <div class="completed-task">
+                    <button>Click entire todo to un-complete</button>
+                    <p>Name</p>
+                    <button><i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
         </div>
     </div>
