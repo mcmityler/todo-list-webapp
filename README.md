@@ -2,7 +2,7 @@
 To do list website made using Webpack, OOP, and SOLID  principles 
 
 
-Color Palette : https://colorhunt.co/palette/767f9edaa464dec384e8ddb4
+Color Palette : https://colorhunt.co/palette/bbdce5eceedfd9c4b0cfab8d
 
 Manrope Font: https://fonts.google.com/specimen/Manrope
 Bebas Neue Font: https://fonts.google.com/specimen/Bebas+Neue
@@ -12,3 +12,5 @@ Font awesome Icons:
 
 Tab Website Icon (pencil): https://fontawesome.com/icons/classic/solid/pen
 Hamburger Menu Icon: https://fontawesome.com/icons/classic/solid/bars
+Trash can icon: https://fontawesome.com/icons/classic/solid/trash
+Plus sign Icon: https://fontawesome.com/icons/classic/solid/plus
