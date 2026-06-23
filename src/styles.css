@@ -16,7 +16,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 1px solid red;
+  /* outline: 1px solid red;
+   */
 }
 :root{
   --dark-blue: #68828a;
@@ -245,11 +246,14 @@ h2{
   grid-template-columns: 1fr 50px;
   grid-template-rows: 20px 40px 1fr 40px 40px;
   padding: 5px;
+  border: 3px solid var(--dark-blue);
+  box-shadow: 3px 3px 10px black;
 }
 .due-in{
   grid-column: 1/-1;
   text-align: center;
   color: var(--dark-blue);
+
 }
 .ongoing-task .task-name, .ongoing-task .task-priority{
   font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -260,7 +264,7 @@ h2{
   padding-left: 10px;
 }
 .task-dueDate{
-  align-self: flex-end;
+  align-self: center;
 }
 .task-complete, .task-edit{
   margin-right: 5px;
