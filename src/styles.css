@@ -25,6 +25,7 @@
   --light-brown: #D9C4B0;
   --light-color: #ECEEDF;
   --delete-color: #c05555;
+  --delete-active-color: #8f3d3d;
 }
 
 body {
@@ -133,6 +134,10 @@ h2{
 }
 .project-delete:hover{
   background-color: var(--delete-color) ;
+  color: var(--light-color)
+}
+.project-delete:active{
+  background-color: var(--delete-active-color) ;
   color: var(--light-color)
 }
 .sidebar-button{
