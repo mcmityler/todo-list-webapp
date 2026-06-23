@@ -7,13 +7,23 @@ const projectManager = new ProjectManager();
 projectManager.addProject("Flowstate");
 projectManager.addProject("Grind Time");
 projectManager.projects[1].addTodoTask({name: "Task at hand"});
+projectManager.projects[1].addTodoTask({name: "Task at hand"});
 projectManager.projects[1].todoList[0].setCompleteness(true);
-projectManager.projects[1].deleteTodoTask(projectManager.projects[1].todoList[0].uniqueID);
+projectManager.logProjects();
+projectManager.projects[1].deleteTodoTask(projectManager.projects[1].todoList[0]);
+projectManager.deleteProject(projectManager.projects[0]);
+projectManager.projects[0].changeProjectName("New Name");
+projectManager.projects[0].todoList[0].editTodo({name: "name", description: "descript", dueDate: "", priority: 2})
 projectManager.logProjects();
 
 
 
-
+const sidebarButton = document.querySelector(".sidebar-button");
+const projectbutton = document.querySelector(".project-button");
+const projectSection = document.querySelector(".projects-container");
+projectbutton.addEventListener("click", ()=>{console.log("test")})
+sidebarButton.addEventListener("click", ()=>{
+    projectSection.classList.contains("condense")? projectSection.classList.remove("condense"): projectSection.classList.add("condense")});
 
 
 // import { greeting } from "./greeting.js";

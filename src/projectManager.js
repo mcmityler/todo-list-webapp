@@ -9,6 +9,9 @@ export default class ProjectManager{
         const _newProject = new Project(name);
         this.projects.push(_newProject);
     }
+    deleteProject(project){
+        this.projects = this.projects.filter(_project => _project !== project);
+    }
     logProjects(){
         console.table(this.projects);
     }

@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" type="image/png" href="./pen-solid-full.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+
     <title>To Do App</title>
 </head>
 <body>
-    
+    <div id="container">
+        <div class="projects-container">
+            <h2>Projects</h2>
+            <button class="sidebar-button"><i class="fa-solid fa-bars"></i></button>
+            <div class="project-list-container">
+                <div class="project">
+                    <button class="project-button"></button>
+                    <p>Default</p>
+                    <button class="project-delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <div class="project">
+                    <button class="project-button"></button>
+                    <p>Default 2</p>
+                    <button class="project-delete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <button class="new-project-button">Add new proj</button>
+        </div>
+
+        <div class="todos-container">
+            <div class="ongoing-todos">
+                <h2>To Dos</h2>
+            </div>
+            <div class="completed-todos">
+                <h2>Completed</h2>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

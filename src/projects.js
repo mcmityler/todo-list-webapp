@@ -6,12 +6,18 @@ export default class Project{
         this.todoList = [];
         this.uniqueID = crypto.randomUUID();
     }
-    addTodoTask(_newTodo){
-        const newTodo = new ToDo(_newTodo.name, _newTodo.description, _newTodo.dueDate, _newTodo.priority);
+    addTodoTask(m_newTodo){
+        const newTodo = new ToDo(m_newTodo.name, m_newTodo.description, m_newTodo.dueDate, m_newTodo.priority);
         this.todoList.push(newTodo);
     }
-    deleteTodoTask(_uniqueID){
-        this.todoList = this.todoList.filter(_task => _task.uniqueID !== _uniqueID);
+    deleteTodoTask(m_todo){
+        this.todoList = this.todoList.filter(_task => _task !== m_todo);
+    }
+    getUniqueID(){
+        return this.uniqueID;
+    }
+    changeProjectName(m_name){
+        this.name = m_name;
     }
 }
 
