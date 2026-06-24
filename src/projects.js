@@ -16,6 +16,12 @@ export default class Project{
     getUniqueID(){
         return this.uniqueID;
     }
+    getProjectName(){
+        return this.name;
+    }
+    getTodoList(){
+        return this.todoList;
+    }
     changeProjectName(m_name){
         this.name = m_name;
     }

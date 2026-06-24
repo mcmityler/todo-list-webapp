@@ -12,6 +12,9 @@ export default class ProjectManager{
     deleteProject(project){
         this.projects = this.projects.filter(_project => _project !== project);
     }
+    getProjects(){
+        return this.projects;
+    }
     logProjects(){
         console.table(this.projects);
     }
