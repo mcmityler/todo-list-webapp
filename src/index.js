@@ -1,6 +1,7 @@
 // src/index.js
 import "./styles.css";
 import ProjectManager from "./projectManager.js"
+import Display from "./display.js"
 
 
 const projectManager = new ProjectManager();
@@ -16,6 +17,7 @@ projectManager.projects[0].changeProjectName("New Name");
 projectManager.projects[0].todoList[0].editTodo({name: "name", description: "descript", dueDate: "", priority: 2})
 projectManager.logProjects();
 
+const display = new Display();
 
 
 const sidebarButton = document.querySelector(".sidebar-button");
