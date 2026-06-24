@@ -504,13 +504,15 @@ h2{
 /* TODO DIALOG FORM */
 #new-todo-dialog{
   position: absolute;
-  width: 400px;
-  height: 450px;
+  width: 450px;
+  height: auto;
   top: calc(50% - 250px);
   left:calc(50% - 200px);
   color: var(--dark-color);
   background-color: var(--brown);
   padding: 0 10px;
+  color: var(--dark-color);
+
 }
 .todo-dialog-container{
   display: grid;
@@ -518,16 +520,67 @@ h2{
 }
 #new-todo-form{
   display:grid;
-  grid-template-rows: 70px 30px 90px 30px 40px 30px 30px 50px;
+  grid-template-rows: 70px 30px 1fr 60px 30px 30px 50px;
+  align-items: center;
+  gap: 5px;
 }
 .submit-todo-button{
   grid-row: -2/-1;
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--dark-blue);
+  color: var(--light-color);
+  place-self: center;
+  font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+.submit-todo-button:hover{
+  background-color: var(--blue);
+  color: var(--dark-color);
+  text-shadow: 2px 2px 2px var(--dark-blue);
+
+}
+.submit-todo-button:active{
+  background-color: var(--light-color);
+  text-shadow: 2px 2px 2px var(--dark-blue);
+  color: var(--dark-color);
+}
+.due-date-container{
+  display: none;
+}
+.due-date-check-container:has(#due-date-checkbox:checked) + .due-date-container {
+  display: block;
+}
+.due-date-check-container input{
+  width: 1rem;
+  height: 1rem;
+}
+#todo-description{
+  height: 200px;
+  width: 420px;
+  place-items: center;
+}
+.todo-project{
+  color: var(--delete-active-color);
 }
 
 /* Priority Styling */
 .priority-initial-container{
   place-self: center;
-  padding-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 6px var(--dark-color);
+  background-color: var(--light-brown);
+  grid-row: 4/5;
+  grid-column: 1/-1;
+}
+.new-priority-title{
+  grid-row: 4/5;
+  grid-column: 1/-1;
+  place-self: flex-start;
 }
 .priority-initial-container label{
     display: inline-block;

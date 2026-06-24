@@ -80,19 +80,19 @@
         </div>
     </dialog>
 
-    <dialog id="new-todo-dialog" open>
+    <dialog id="new-todo-dialog">
         <div class="todo-dialog-container">
-            <h2 class="todo-form-title">New Project_Name To Do</h2>
+            <h2 class="todo-form-title">New <span class="todo-project">*********</span> To Do</h2>
             <form id="new-todo-form">
                 <div class="todo-name-container input-container">
-                    <input type="text" name="todo-name-input" id="todo-name-input" placeholder="" maxlength="26" required/>
+                    <input type="text" name="todo-name-input" id="todo-name-input" placeholder="" maxlength="26" required autocomplete="off"/>
                     <label for="todo-name-input" class="hover-pointer">Task Name<span class="asterisk">*</span></label>
                 </div>
 
                 <label for="todo-description" class="hover-pointer" >Description: </label>
-                <textarea name="todo-description" id="todo-description" placeholder="" maxlength="50"></textarea>
+                <textarea name="todo-description" id="todo-description" placeholder="" maxlength="50" autocomplete="off"></textarea>
                 
-                <label for="">Priority:</label>
+                <label class="new-priority-title" for="">Priority:</label>
                 <div class="priority-initial-container">
                     <input type="radio" name="priority-initial" id="priority-1" 
                     class="priority-radio priority-initial" value="1" checked>

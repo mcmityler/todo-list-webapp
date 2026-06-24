@@ -1,6 +1,7 @@
 # todo-list-webapp
 To do list website made using Webpack, OOP, and SOLID  principles 
 
+Tutorial followed for apple-like inputs: https://www.youtube.com/watch?v=9wO594NXw34&list=PLjYwlnQbXANvVJUgAJ-plXsUDFYwv5-BW 
 
 Color Palette : https://colorhunt.co/palette/bbdce5eceedfd9c4b0cfab8d
 
