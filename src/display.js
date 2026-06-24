@@ -48,21 +48,30 @@ export default class Display{
         for (let i = 0; i < myProjectList.length; i++) {
             this.addNewProjectDiv(myProjectList[i]);
         }
+        this.highlightSelectProject();
     }
     addNewProjectDiv(m_project){
         const m_projectDiv = document.createElement("div");
-        m_projectDiv.classList.add("project");
+        m_projectDiv.classList.add("project", `id_${m_project.uniqueID}`);
 
         const m_projectSelect = document.createElement("button");
         m_projectSelect.classList.add("project-button");
         m_projectSelect.ariaLabel = `Select ${m_project.getProjectName()}`;
-
+        m_projectSelect.addEventListener("click", () =>{
+            this.projectManager.selectProject(m_project);
+            this.highlightSelectProject();
+        });
+            
         const m_projectName = document.createElement("p");
         m_projectName.textContent = m_project.getProjectName();
 
         const m_projectDelete = document.createElement("button");
         m_projectDelete.classList.add("project-delete");
         m_projectDelete.ariaLabel = `Delete ${m_project.getProjectName()} project`;
+        m_projectDelete.addEventListener("click", () => {
+            this.projectManager.deleteProject(m_project);
+            this.updateProjectList();
+        })
 
         const m_trashIcon = document.createElement("i");
         m_trashIcon.classList.add("fa-solid", "fa-trash");
@@ -84,6 +93,14 @@ export default class Display{
         // this.updateProjectList();
         console.log("clicked");
         this.newTodoDialog.close()
+    }
+    highlightSelectProject(){
+        //if any are selected remove them
+        if(this.projectManager.selected.uniqueID != null){
+            document.querySelector(".selected") != null ? document.querySelector(".selected").classList.remove("selected"): console.log("nothing to deselect");
+            document.querySelector(`.id_${this.projectManager.selected.uniqueID}`).classList.add("selected");
+
+        }
     }
 
 }

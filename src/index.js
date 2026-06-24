@@ -18,6 +18,7 @@ import Display from "./display.js"
 
 const display = new Display();
 display.projectManager.addProject("Default");
+display.projectManager.selectProject(display.projectManager.projects[0]);
 display.updateProjectList();
 
 

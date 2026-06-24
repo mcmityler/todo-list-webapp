@@ -3,6 +3,7 @@ import Project from "./projects.js"
 export default class ProjectManager{
     constructor(){
         this.projects = []; //array of project classes
+        this.selected = {}; //what project is currently selected
     }
 
     addProject(name){
@@ -10,6 +11,10 @@ export default class ProjectManager{
         this.projects.push(_newProject);
     }
     deleteProject(project){
+        console.log(this.selected === project);
+        if(this.selected === project){
+            this.selected = {};
+        }
         this.projects = this.projects.filter(_project => _project !== project);
     }
     getProjects(){
@@ -17,5 +22,9 @@ export default class ProjectManager{
     }
     logProjects(){
         console.table(this.projects);
+    }
+    selectProject(project){
+        this.selected = project;
+        console.log(this.selected.name);
     }
 }
