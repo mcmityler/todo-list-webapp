@@ -67,16 +67,69 @@
     </div>
 
     <dialog id="new-project-dialog">
-        <div class="dialog-container">
+        <div class="project-dialog-container">
             <h2 class="form-title">Create New Project</h2>
             <form id="new-project-form">
                 <div class="project-name-container input-container">
-                    <input type="text" name="project-name-input" id="title-input" placeholder="" maxlength="26" required/>
+                    <input type="text" name="project-name-input" id="title-input" placeholder="" maxlength="16" required autocomplete="off"/>
                     <label for="project-name-input" class="hover-pointer">Project Name<span class="asterisk">*</span></label>
                 </div>
-                <button class="submit-project-button hover-pointer">Submit book</button>
+                <button class="submit-project-button hover-pointer">Submit new project</button>
             </form>
-            <button class="close-dialog-button hover-pointer" aria-label="Close"><i class="fa-solid fa-x"></i></button>
+            <button class="close-project-dialog-button hover-pointer" aria-label="Close New Project Form"><i class="fa-solid fa-x"></i></button>
+        </div>
+    </dialog>
+
+    <dialog id="new-todo-dialog" open>
+        <div class="todo-dialog-container">
+            <h2 class="todo-form-title">New Project_Name To Do</h2>
+            <form id="new-todo-form">
+                <div class="todo-name-container input-container">
+                    <input type="text" name="todo-name-input" id="todo-name-input" placeholder="" maxlength="26" required/>
+                    <label for="todo-name-input" class="hover-pointer">Task Name<span class="asterisk">*</span></label>
+                </div>
+
+                <label for="todo-description" class="hover-pointer" >Description: </label>
+                <textarea name="todo-description" id="todo-description" placeholder="" maxlength="50"></textarea>
+                
+                <label for="">Priority:</label>
+                <div class="priority-initial-container">
+                    <input type="radio" name="priority-initial" id="priority-1" 
+                    class="priority-radio priority-initial" value="1" checked>
+
+                    <label for="priority-1"><i class="fa-solid fa-exclamation"></i></label>
+                    
+                    <input type="radio" name="priority-initial" id="priority-2"
+                    class="priority-radio priority-initial" value="2">
+
+                    <label for="priority-2"><i class="fa-solid fa-exclamation"></i></label>
+                    
+                    <input type="radio" name="priority-initial" id="priority-3" 
+                    class="priority-radio priority-initial" value="3">
+
+                    <label for="priority-3"><i class="fa-solid fa-exclamation"></i></label>
+                    
+                    <input type="radio" name="priority-initial" id="priority-4" 
+                    class="priority-radio priority-initial" value="4">
+
+                    <label for="priority-4"><i class="fa-solid fa-exclamation"></i></label>
+                    
+                    <input type="radio" name="priority-initial" id="priority-5" 
+                    class="priority-radio priority-initial" value="5">
+                    
+                    <label for="priority-5"><i class="fa-solid fa-exclamation"></i></label>
+                </div>
+                <div class="due-date-check-container">
+                    <label for="due-date-checkbox">Has Due Date?</label>
+                    <input type="checkbox" id="due-date-checkbox" name="due-date-checkbox"/>
+                </div>
+                <div class="due-date-container">
+                    <label for="due-date-selector">Due Date:</label>
+                    <input type="date" id="due-date-selector" name="due-date-selector">
+                </div>
+                <button class="submit-todo-button hover-pointer">Submit new to do</button>
+            </form>
+            <button class="close-todo-dialog-button hover-pointer" aria-label="Close New To Do Form"><i class="fa-solid fa-x"></i></button>
         </div>
     </dialog>
 </body>

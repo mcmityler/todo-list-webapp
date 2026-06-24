@@ -2,22 +2,35 @@ import ProjectManager from "./projectManager.js"
 
 export default class Display{
     constructor(){
-        this.closeNewProject = document.querySelector(".close-dialog-button");
-        this.newProjectForm = document.getElementById("new-project-dialog");
-        this.closeNewProject.addEventListener("click", ()=>{this.closeNewProjectForm()});
+        this.closeNewProject = document.querySelector(".close-project-dialog-button");
+        this.newProjectDialog = document.getElementById("new-project-dialog");
+        this.newProjectForm = document.getElementById("new-project-form");
+        this.closeNewProject.addEventListener("click", ()=>{this.closeDialogs()});
         this.newProjectForm.addEventListener("submit", ()=>{this.submitNewProjectForm()});
         this.projectManager = new ProjectManager();
         this.openNewProject = document.querySelector(".new-project-button");
         this.openNewProject.addEventListener("click", ()=>{this.openNewProjectForm()});
 
         this.projectListContainer = document.querySelector(".project-list-container");
+
+        this.closeNewTodo = document.querySelector(".close-todo-dialog-button");
+        this.newTodoDialog = document.getElementById("new-todo-dialog");
+        this.newTodoForm = document.getElementById("new-todo-form");
+        this.closeNewTodo.addEventListener("click", ()=>{this.closeDialogs()});
+        this.newTodoForm.addEventListener("submit", ()=>{this.submitNewTodoForm()});
+
+
+
+
     }
 
     openNewProjectForm(){
-        this.newProjectForm.showModal();
+        this.newProjectForm.reset(); //make sure form is empty every time you open
+        this.newProjectDialog.showModal();
     }
-    closeNewProjectForm(){
-        this.newProjectForm.close()
+    closeDialogs(){
+        this.newProjectDialog.close()
+        this.newTodoDialog.close()
     }
     submitNewProjectForm(){
         event.preventDefault(); 
@@ -26,8 +39,7 @@ export default class Display{
         this.projectManager.addProject(projectName);
         this.projectManager.logProjects();
         this.updateProjectList();
-        event.target.reset();
-        this.newProjectForm.close()
+        this.newProjectDialog.close()
     }
     updateProjectList(){
         //Update the entire visible element for what projects are in my list
@@ -41,9 +53,9 @@ export default class Display{
         const m_projectDiv = document.createElement("div");
         m_projectDiv.classList.add("project");
 
-        const m_projectButton = document.createElement("button");
-        m_projectButton.classList.add("project-button");
-        m_projectButton.ariaLabel = `Select ${m_project.getProjectName()}`;
+        const m_projectSelect = document.createElement("button");
+        m_projectSelect.classList.add("project-button");
+        m_projectSelect.ariaLabel = `Select ${m_project.getProjectName()}`;
 
         const m_projectName = document.createElement("p");
         m_projectName.textContent = m_project.getProjectName();
@@ -56,11 +68,22 @@ export default class Display{
         m_trashIcon.classList.add("fa-solid", "fa-trash");
 
 
-        m_projectDiv.appendChild(m_projectButton);
+        m_projectDiv.appendChild(m_projectSelect);
         m_projectDiv.appendChild(m_projectName);
         m_projectDelete.appendChild(m_trashIcon);
         m_projectDiv.appendChild(m_projectDelete);
         this.projectListContainer.appendChild(m_projectDiv);
+    }
+
+    submitNewTodoForm(){
+        event.preventDefault(); 
+        const formData = new FormData(event.target);
+        // const projectName = formData.get('project-name-input');
+        // this.projectManager.addProject(projectName);
+        // this.projectManager.logProjects();
+        // this.updateProjectList();
+        console.log("clicked");
+        this.newTodoDialog.close()
     }
 
 }

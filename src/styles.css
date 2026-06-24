@@ -74,7 +74,7 @@ h2{
 
 .project{
   display: grid;
-  grid-template-columns: 1fr 40px;
+  grid-template-columns: 166px 40px;
   grid-template-rows: 1fr;
 }
 .project p{
@@ -183,7 +183,7 @@ h2{
   border-radius: 10px;
   display:grid;
   grid-template-rows: 50px 1fr;
-  grid-template-columns: 1fr 250px;
+  grid-template-columns: 1fr 150px;
   overflow: auto;
   
 }
@@ -406,12 +406,12 @@ h2{
   color: var(--dark-color);
   background-color: var(--brown);
 }
-.dialog-container{
+.project-dialog-container{
   display: grid;
   position: relative;
   grid-template-rows: 50px 1fr;
 }
-.close-dialog-button{
+.close-project-dialog-button,.close-todo-dialog-button{
   position: absolute;
   top: 10px;
   right: 10px;
@@ -423,11 +423,11 @@ h2{
   font-size: 1.2rem;
   transition: all 0.2s ease
 }
-.close-dialog-button:hover{
+.close-project-dialog-button:hover, .close-todo-dialog-button:hover{
   color: var(--light-color);
   background-color: var(--delete-color);
 }
-.close-dialog-button:active{
+.close-project-dialog-button:active, .close-todo-dialog-button:active{
   color: var(--light-color);
   background-color: var(--delete-active-color);
 
@@ -498,4 +498,63 @@ h2{
 .input-container input:not(:placeholder-shown) ~ label{
     transform: translateY(-33px);
     font-size: 0.8em;
+}
+
+
+/* TODO DIALOG FORM */
+#new-todo-dialog{
+  position: absolute;
+  width: 400px;
+  height: 450px;
+  top: calc(50% - 250px);
+  left:calc(50% - 200px);
+  color: var(--dark-color);
+  background-color: var(--brown);
+  padding: 0 10px;
+}
+.todo-dialog-container{
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+#new-todo-form{
+  display:grid;
+  grid-template-rows: 70px 30px 90px 30px 40px 30px 30px 50px;
+}
+.submit-todo-button{
+  grid-row: -2/-1;
+}
+
+/* Priority Styling */
+.priority-initial-container{
+  place-self: center;
+  padding-bottom: 10px;
+}
+.priority-initial-container label{
+    display: inline-block;
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+.priority-initial-container label i{
+    font-size: 2rem;
+    transition: 0.1s ease-in;
+}
+.priority-initial-container .priority-radio{
+    display: none;
+}
+/* when sibling checked  */
+.priority-initial-container input[type='radio']:checked + label,
+.priority-initial-container label:has(~ input[type='radio']:checked){
+    color: var(--delete-color);
+}
+/* when hovered */
+.priority-initial-container label:hover i,
+.priority-initial-container label:has(~ label:hover) i
+{
+    color: var(--delete-active-color);
+}
+
+/* When clicked */
+.priority-initial-container label:active i{
+    color: var(--light-color);; 
+
 }
