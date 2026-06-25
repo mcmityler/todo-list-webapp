@@ -7,7 +7,13 @@ export default class Project{
         this.uniqueID = crypto.randomUUID();
     }
     addTodoTask(m_newTodo){
-        const newTodo = new ToDo(m_newTodo.name, m_newTodo.description, m_newTodo.dueDate, m_newTodo.priority);
+        const newTodo = new ToDo(
+            m_newTodo.name,
+            m_newTodo.description,
+            m_newTodo.hasDueDate,
+            m_newTodo.dueDate,
+            m_newTodo.priority
+        );
         this.todoList.push(newTodo);
     }
     deleteTodoTask(m_todo){

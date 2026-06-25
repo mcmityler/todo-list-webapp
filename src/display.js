@@ -19,6 +19,7 @@ export default class Display{
         this.closeNewTodo.addEventListener("click", ()=>{this.closeDialogs()});
         this.newTodoForm.addEventListener("submit", ()=>{this.submitNewTodoForm()});
 
+        this.ongoingTodoContainer = document.querySelector(".ongoing-todos");
 
 
 
@@ -27,6 +28,11 @@ export default class Display{
     openNewProjectForm(){
         this.newProjectForm.reset(); //make sure form is empty every time you open
         this.newProjectDialog.showModal();
+    }
+    openNewTodoForm(){
+        this.newTodoForm.reset(); //make sure form is empty every time you open
+        console.log("need to set project title here")
+        this.newTodoDialog.showModal();
     }
     closeDialogs(){
         this.newProjectDialog.close()
@@ -87,20 +93,132 @@ export default class Display{
     submitNewTodoForm(){
         event.preventDefault(); 
         const formData = new FormData(event.target);
+        const name = formData.get('todo-name-input');
+        const description = formData.get('todo-description');
+        const hasDueDate = formData.get('due-date-checkbox');
+        const dueDate = formData.get('due-date-selector');
+        const priority = formData.get('priority-initial');
+        console.log({
+            name,
+            description,
+            hasDueDate,
+            dueDate,
+            priority
+        })
+        const m_selectedProject = this.projectManager.getCurrentSelected();
+        m_selectedProject.addTodoTask({
+            name,
+            description,
+            hasDueDate,
+            dueDate,
+            priority
+        })
         // const projectName = formData.get('project-name-input');
         // this.projectManager.addProject(projectName);
-        // this.projectManager.logProjects();
-        // this.updateProjectList();
+        this.projectManager.logProjects();
+        this.updateTodoSections();
         console.log("clicked");
         this.newTodoDialog.close()
+    }
+    updateTodoSections(){
+        const m_currentTodoList = this.projectManager.getSelectedTodos();
+        this.ongoingTodoContainer.textContent = "";
+        this.createTodoAddButton();
+        //also need to empty completed container
+        for (let i = 0; i < m_currentTodoList.length; i++) {
+            if(m_currentTodoList[i].getCompleteness() === false){
+                this.addOngoingTodoDiv(m_currentTodoList[i]);
+            }
+            else{
+                //add this to the completed todos
+            }
+            
+        }
+    }
+    createTodoAddButton(){
+        const m_addButtonContainer = document.createElement("div");
+        m_addButtonContainer.classList.add("add-todo-container");
+
+        const m_addTodoButton = document.createElement("button");
+        m_addTodoButton.ariaLabel = "Add new to do task";
+        m_addTodoButton.classList.add("new-todo-button");
+        m_addTodoButton.addEventListener("click", ()=>{this.openNewTodoForm()});
+
+
+        const m_circleDiv = document.createElement("div");
+        m_circleDiv.classList.add("add-circle");
+
+        const m_plusIcon = document.createElement("div");
+        m_plusIcon.classList.add("fa-solid","fa-plus");
+
+        m_addButtonContainer.appendChild(m_addTodoButton);
+        m_circleDiv.appendChild(m_plusIcon);
+        m_addButtonContainer.appendChild(m_circleDiv);
+        this.ongoingTodoContainer.appendChild(m_addButtonContainer);
+    }
+    addOngoingTodoDiv(m_todoTask){
+        const m_ongoingDiv = document.createElement("div");
+        m_ongoingDiv.classList.add("ongoing-task");
+        
+        const m_dueInDate = document.createElement("p");
+        m_dueInDate.classList.add("due-in");
+        //DO CALCULATION HERE FOR HOW LONG UNTIL DUE
+        m_dueInDate.textContent = "Due in not set up";
+
+        const m_taskName = document.createElement("p");
+        m_taskName.classList.add("task-name");
+        m_taskName.textContent = m_todoTask.getName();
+
+        const m_taskPriority = document.createElement("p");
+        m_taskPriority.classList.add("task-priority");
+        m_taskPriority.textContent = m_todoTask.getPriorityExclamation();
+
+        const m_taskDescription = document.createElement("p");
+        m_taskDescription.classList.add("task-description");
+        m_taskDescription.textContent = m_todoTask.getDescription();
+        
+
+        const m_dueDate = document.createElement("p");
+
+        //need way to get the date from the todo object, which I should already have from when i submit it
+
+        const m_taskEditButton = document.createElement("button");
+        //need to set this up completely. also need to set up edit dialog
+
+        const m_taskCompleteButton = document.createElement("button");
+        //Clicking has to move from here to the completed section somehow
+
+        const m_taskDeleteButton = document.createElement("button");
+        //clicking has to delete this task from the todo list
+
+        m_ongoingDiv.appendChild(m_dueInDate);
+        m_ongoingDiv.appendChild(m_taskName);
+        m_ongoingDiv.appendChild(m_taskPriority);
+        m_ongoingDiv.appendChild(m_taskDescription);
+        this.ongoingTodoContainer.appendChild(m_ongoingDiv)
+       
     }
     highlightSelectProject(){
         //if any are selected remove them
         if(this.projectManager.selected.uniqueID != null){
             document.querySelector(".selected") != null ? document.querySelector(".selected").classList.remove("selected"): console.log("nothing to deselect");
             document.querySelector(`.id_${this.projectManager.selected.uniqueID}`).classList.add("selected");
-
+            this.updateTodoSections();
         }
     }
 
 }
+
+
+
+ /*
+<div class="ongoing-task">
+    <p class="due-in">Due in 20 Days!</p>
+    <p class="task-name">Task 1</p>
+    <p class="task-description">Description</p>
+    <p class="task-dueDate">Due Date: 01-01-2000</p>
+    <button class="task-edit">Edit</button>
+    <button class="task-complete">Mark Complete</button>
+    <button class="task-delete" aria-label="delete this ongoing task"><i class="fa-solid fa-trash"></i></button>
+</div> 
+*/

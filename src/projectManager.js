@@ -20,6 +20,18 @@ export default class ProjectManager{
     getProjects(){
         return this.projects;
     }
+    getCurrentSelected(){
+        if(this.selected.uniqueID === null){
+            console.log("no selected project found");
+            return {};
+        }
+        return this.projects.find(_project => _project.uniqueID === this.selected.uniqueID);
+    }
+    getSelectedTodos(){
+        const m_selected = this.projects.find(_project => _project.uniqueID === this.selected.uniqueID);
+        console.log(m_selected);
+        return m_selected.getTodoList();
+    }
     logProjects(){
         console.table(this.projects);
     }

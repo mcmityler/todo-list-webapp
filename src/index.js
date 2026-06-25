@@ -20,6 +20,8 @@ const display = new Display();
 display.projectManager.addProject("Default");
 display.projectManager.selectProject(display.projectManager.projects[0]);
 display.updateProjectList();
+display.projectManager.projects[0].addTodoTask({name: "Task at hand", description: "This is a crazy description"});
+display.updateTodoSections();
 
 
 // const sidebarButton = document.querySelector(".sidebar-button");

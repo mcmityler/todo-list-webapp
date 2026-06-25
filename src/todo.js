@@ -1,8 +1,9 @@
 export default class ToDo{
-    constructor(name, description = "", dueDate = "", priority = 5){
+    constructor(name, description = "", hasDueDate = false, dueDate = "", priority = 1){
         this.name = name;
         this.description = description;
-        this.dueDate = dueDate;
+        this.hasDueDate = hasDueDate;
+        this.dueDate = new Date(dueDate).toLocaleDateString('en-GB');
         this.priority = priority;
         this.completed = false; 
         this.uniqueID = crypto.randomUUID();
@@ -17,6 +18,19 @@ export default class ToDo{
     }
     getUniqueID(){
         return this.uniqueID;
+    }
+    getName(){
+        return this.name;
+    }
+    getPriorityExclamation(){
+        let m_exclamation = "";
+        for (let i = 0; i < this.priority; i++) {
+            m_exclamation += "! "
+        }
+        return m_exclamation;
+    }
+    getDescription(){
+        return this.description;
     }
     editTodo({name, description, dueDate, priority}){
         this.name = name;
