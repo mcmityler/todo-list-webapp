@@ -6,12 +6,19 @@ export default class ToDo{
         this.dueDate = new Date(dueDate).toLocaleDateString('en-GB');
         this.priority = priority;
         this.completed = false; 
+        this.completedDate = ""; 
         this.uniqueID = crypto.randomUUID();
 
     }
 
+    setCompletedDate(){
+        this.completedDate = new Date().toLocaleDateString('en-GB');
+    }
     setCompleteness(completed){
         this.completed = completed
+        if(completed === true){
+            this.setCompletedDate();
+        }
     }
     getCompleteness(){
         return this.completed;
@@ -44,6 +51,9 @@ export default class ToDo{
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+    }
+    getCompletedDate(){
+        return this.completedDate;
     }
 
 }

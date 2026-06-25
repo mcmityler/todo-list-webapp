@@ -198,6 +198,10 @@ export default class Display{
         const m_taskCompleteButton = document.createElement("button");
         m_taskCompleteButton.classList.add("task-complete");
         m_taskCompleteButton.textContent = "Mark Complete";
+        m_taskCompleteButton.addEventListener("click", ()=>{
+            m_todoTask.setCompleteness(true);
+            this.updateTodoSections();
+        })
         //Clicking has to move from here to the completed section somehow
 
         const m_taskDeleteButton = document.createElement("button");
@@ -226,6 +230,10 @@ export default class Display{
         
         const m_incompleteButton = document.createElement("button");
         m_incompleteButton.classList.add("task-incomplete");
+        m_incompleteButton.addEventListener("click", ()=>{
+            m_todoTask.setCompleteness(false);
+            this.updateTodoSections();
+        })
 
         const m_completedName = document.createElement("p");
         m_completedName.classList.add("completed-name");
@@ -233,7 +241,7 @@ export default class Display{
 
         const m_completedDate = document.createElement("p");
         m_completedDate.classList.add("completed-date");
-        m_completedDate.textContent = "11-11-1111";
+        m_completedDate.textContent = m_todoTask.getCompletedDate();
 
         const m_completedDeleteButton = document.createElement("button");
         m_completedDeleteButton.classList.add("completed-delete");
