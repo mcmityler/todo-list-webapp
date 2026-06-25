@@ -4,7 +4,7 @@ export default class ToDo{
         this.description = description;
         this.hasDueDate = hasDueDate;
         this.dueDate = new Date(dueDate).toLocaleDateString('en-GB');
-        this.priority = priority;
+        this.priority = +priority;
         this.completed = false; 
         this.completedDate = ""; 
         this.uniqueID = crypto.randomUUID();
@@ -33,8 +33,11 @@ export default class ToDo{
         if(this.hasDueDate === "on"){
             return this.dueDate
         }else{
-            return "No date set!";
+            return "No date set";
         }
+    }
+    getPriority(){
+        return this.priority;
     }
     getPriorityExclamation(){
         let m_exclamation = "";

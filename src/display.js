@@ -22,6 +22,8 @@ export default class Display{
         this.ongoingTodoContainer = document.querySelector(".ongoing-todos");
         this.completedTodoContainer = document.querySelector(".completed-todos");
 
+        this.projectSortDropdown = document.getElementById("project-sort-dropdown");
+        this.projectSortDropdown.addEventListener("change", ()=>{this.updateTodoSections()});
 
 
     }
@@ -128,22 +130,45 @@ export default class Display{
         const m_currentTodoList = this.projectManager.getSelectedTodos();
         this.ongoingTodoContainer.textContent = "";
         this.completedTodoContainer.textContent = "";
+
         if(this.projectManager.getCurrentSelected() === undefined){
             return;
         }
         this.createTodoAddButton();
         //also need to empty completed container
-        for (let i = 0; i < m_currentTodoList.length; i++) {
-            if(m_currentTodoList[i].getCompleteness() === false){
-                this.addOngoingTodoDiv(m_currentTodoList[i]);
-            }
-            else{
-                //add this to the completed todos
-                this.addCompleteTodoDiv(m_currentTodoList[i]);
+        if(this.projectSortDropdown.value === "default"){
+            for (let i = 0; i < m_currentTodoList.length; i++) {
+                if(m_currentTodoList[i].getCompleteness() === false){
+                    //ongoing task
+                    this.addOngoingTodoDiv(m_currentTodoList[i]);
+                }
+                else{
+                    //add this to the completed todos
+                    this.addCompleteTodoDiv(m_currentTodoList[i]);
 
+                }
             }
-            
         }
+        else if(this.projectSortDropdown.value === "priority"){
+            const priority1 = m_currentTodoList.filter(m_todo => m_todo.getPriority() === 1);
+            const priority2 = m_currentTodoList.filter(m_todo => m_todo.getPriority() === 2);
+            const priority3 = m_currentTodoList.filter(m_todo => m_todo.getPriority() === 3);
+            const priority4 = m_currentTodoList.filter(m_todo => m_todo.getPriority() === 4);
+            const priority5 = m_currentTodoList.filter(m_todo => m_todo.getPriority() === 5);
+            const prioritiesTodoSorted = [...priority5, ...priority4, ...priority3, ...priority2, ...priority1];
+            for (let i = 0; i < prioritiesTodoSorted.length; i++) {
+                if(prioritiesTodoSorted[i].getCompleteness() === false){
+                    //ongoing task
+                    this.addOngoingTodoDiv(prioritiesTodoSorted[i]);
+                }
+                else{
+                    //add this to the completed todos
+                    this.addCompleteTodoDiv(prioritiesTodoSorted[i]);
+
+                }
+            }
+        }
+        
     }
     createTodoAddButton(){
         const m_addButtonContainer = document.createElement("div");
@@ -285,5 +310,4 @@ export default class Display{
         m_projectTodoTitle.textContent = m_projectName;
         m_newTodoTitle.textContent = m_projectName;
     }
-
 }
