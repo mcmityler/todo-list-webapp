@@ -60,12 +60,14 @@ export default class Display{
     addNewProjectDiv(m_project){
         const m_projectDiv = document.createElement("div");
         m_projectDiv.classList.add("project", `id_${m_project.uniqueID}`);
-
+        
+        
         const m_projectSelect = document.createElement("button");
-        m_projectSelect.classList.add("project-button");
+        m_projectSelect.classList.add("project-button", "hover-pointer");
         m_projectSelect.ariaLabel = `Select ${m_project.getProjectName()}`;
         m_projectSelect.addEventListener("click", () =>{
             this.projectManager.selectProject(m_project);
+            
             this.highlightSelectProject();
         });
             
@@ -73,7 +75,7 @@ export default class Display{
         m_projectName.textContent = m_project.getProjectName();
 
         const m_projectDelete = document.createElement("button");
-        m_projectDelete.classList.add("project-delete");
+        m_projectDelete.classList.add("project-delete", "hover-pointer");
         m_projectDelete.ariaLabel = `Delete ${m_project.getProjectName()} project`;
         m_projectDelete.addEventListener("click", () => {
             this.projectManager.deleteProject(m_project);
@@ -149,7 +151,7 @@ export default class Display{
 
         const m_addTodoButton = document.createElement("button");
         m_addTodoButton.ariaLabel = "Add new to do task";
-        m_addTodoButton.classList.add("new-todo-button");
+        m_addTodoButton.classList.add("new-todo-button", "hover-pointer");
         m_addTodoButton.addEventListener("click", ()=>{this.openNewTodoForm()});
 
 
@@ -191,12 +193,12 @@ export default class Display{
         m_dueDate.textContent = "Due Date: " + m_todoTask.getDueDate();
 
         const m_taskEditButton = document.createElement("button");
-        m_taskEditButton.classList.add("task-edit");
+        m_taskEditButton.classList.add("task-edit", "hover-pointer");
         m_taskEditButton.textContent = "Edit";
         //need to set this up completely. also need to set up edit dialog
 
         const m_taskCompleteButton = document.createElement("button");
-        m_taskCompleteButton.classList.add("task-complete");
+        m_taskCompleteButton.classList.add("task-complete", "hover-pointer");
         m_taskCompleteButton.textContent = "Mark Complete";
         m_taskCompleteButton.addEventListener("click", ()=>{
             m_todoTask.setCompleteness(true);
@@ -205,7 +207,7 @@ export default class Display{
         //Clicking has to move from here to the completed section somehow
 
         const m_taskDeleteButton = document.createElement("button");
-        m_taskDeleteButton.classList.add("task-delete");
+        m_taskDeleteButton.classList.add("task-delete", "hover-pointer");
         m_taskDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
         m_taskDeleteButton.addEventListener("click", ()=>{
             this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
@@ -233,7 +235,7 @@ export default class Display{
         m_completedDiv.classList.add("completed-task");
         
         const m_incompleteButton = document.createElement("button");
-        m_incompleteButton.classList.add("task-incomplete");
+        m_incompleteButton.classList.add("task-incomplete", "hover-pointer");
         m_incompleteButton.addEventListener("click", ()=>{
             m_todoTask.setCompleteness(false);
             this.updateTodoSections();
@@ -248,7 +250,7 @@ export default class Display{
         m_completedDate.textContent = m_todoTask.getCompletedDate();
 
         const m_completedDeleteButton = document.createElement("button");
-        m_completedDeleteButton.classList.add("completed-delete");
+        m_completedDeleteButton.classList.add("completed-delete", "hover-pointer");
         m_completedDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
         m_completedDeleteButton.addEventListener("click", ()=>{
             this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
@@ -271,8 +273,17 @@ export default class Display{
         if(this.projectManager.selected.uniqueID != null){
             document.querySelector(".selected") != null ? document.querySelector(".selected").classList.remove("selected"): console.log("nothing to deselect");
             document.querySelector(`.id_${this.projectManager.selected.uniqueID}`).classList.add("selected");
+            
+            this.updateProjectTitles();
             this.updateTodoSections();
         }
+    }
+    updateProjectTitles(){
+        const m_projectTodoTitle = document.querySelector(".todo-project-title");
+        const m_newTodoTitle = document.querySelector(".todo-project");
+        const m_projectName = this.projectManager.getCurrentSelected().getProjectName();
+        m_projectTodoTitle.textContent = m_projectName;
+        m_newTodoTitle.textContent = m_projectName;
     }
 
 }

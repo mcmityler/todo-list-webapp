@@ -26,8 +26,8 @@
   --brown: #CFAB8D;
   --light-brown: #D9C4B0;
   --light-color: #ECEEDF;
-  --delete-color: #c05555;
-  --delete-active-color: #8f3d3d;
+  --delete-color: #c94747;
+  --delete-active-color: #773030;
   --dark-color: #291d0e;
 }
 
@@ -36,6 +36,9 @@ body {
   height: 100vh;
   font-family: "Allura", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: var(--dark-color)
+}
+.hover-pointer{
+  cursor: pointer;
 }
 h2{
   font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -570,8 +573,10 @@ h2{
   text-align: left;
   padding: 5px;
 }
-.todo-project{
+.todo-project-title, .todo-project{
   color: var(--delete-active-color);
+  font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-decoration: underline;
 }
 
 /* Priority Styling */
