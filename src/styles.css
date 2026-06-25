@@ -566,7 +566,9 @@ h2{
 #todo-description{
   height: 200px;
   width: 420px;
-  place-items: center;
+  overflow-wrap: break-word;
+  text-align: left;
+  padding: 5px;
 }
 .todo-project{
   color: var(--delete-active-color);

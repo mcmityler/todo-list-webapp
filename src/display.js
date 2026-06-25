@@ -207,6 +207,10 @@ export default class Display{
         const m_taskDeleteButton = document.createElement("button");
         m_taskDeleteButton.classList.add("task-delete");
         m_taskDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
+        m_taskDeleteButton.addEventListener("click", ()=>{
+            this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
+            this.updateTodoSections();
+        });
         //clicking has to delete this task from the todo list
         
         const m_trashIcon = document.createElement("i");
@@ -246,6 +250,10 @@ export default class Display{
         const m_completedDeleteButton = document.createElement("button");
         m_completedDeleteButton.classList.add("completed-delete");
         m_completedDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
+        m_completedDeleteButton.addEventListener("click", ()=>{
+            this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
+            this.updateTodoSections();
+        });
         //clicking has to delete this task from the todo list
         
         const m_trashIcon = document.createElement("i");
