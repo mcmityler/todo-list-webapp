@@ -20,6 +20,7 @@ export default class Display{
         this.newTodoForm.addEventListener("submit", ()=>{this.submitNewTodoForm()});
 
         this.ongoingTodoContainer = document.querySelector(".ongoing-todos");
+        this.completedTodoContainer = document.querySelector(".completed-todos");
 
 
 
@@ -77,6 +78,7 @@ export default class Display{
         m_projectDelete.addEventListener("click", () => {
             this.projectManager.deleteProject(m_project);
             this.updateProjectList();
+            this.updateTodoSections();
         })
 
         const m_trashIcon = document.createElement("i");
@@ -123,6 +125,10 @@ export default class Display{
     updateTodoSections(){
         const m_currentTodoList = this.projectManager.getSelectedTodos();
         this.ongoingTodoContainer.textContent = "";
+        this.completedTodoContainer.textContent = "";
+        if(this.projectManager.getCurrentSelected() === undefined){
+            return;
+        }
         this.createTodoAddButton();
         //also need to empty completed container
         for (let i = 0; i < m_currentTodoList.length; i++) {
@@ -131,6 +137,8 @@ export default class Display{
             }
             else{
                 //add this to the completed todos
+                this.addCompleteTodoDiv(m_currentTodoList[i]);
+
             }
             
         }
@@ -179,24 +187,68 @@ export default class Display{
         
 
         const m_dueDate = document.createElement("p");
-
-        //need way to get the date from the todo object, which I should already have from when i submit it
+        m_dueDate.classList.add("task-dueDate");
+        m_dueDate.textContent = "Due Date: " + m_todoTask.getDueDate();
 
         const m_taskEditButton = document.createElement("button");
+        m_taskEditButton.classList.add("task-edit");
+        m_taskEditButton.textContent = "Edit";
         //need to set this up completely. also need to set up edit dialog
 
         const m_taskCompleteButton = document.createElement("button");
+        m_taskCompleteButton.classList.add("task-complete");
+        m_taskCompleteButton.textContent = "Mark Complete";
         //Clicking has to move from here to the completed section somehow
 
         const m_taskDeleteButton = document.createElement("button");
+        m_taskDeleteButton.classList.add("task-delete");
+        m_taskDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
         //clicking has to delete this task from the todo list
+        
+        const m_trashIcon = document.createElement("i");
+        m_trashIcon.classList.add("fa-solid", "fa-trash");
+        m_taskDeleteButton.appendChild(m_trashIcon);
 
         m_ongoingDiv.appendChild(m_dueInDate);
         m_ongoingDiv.appendChild(m_taskName);
         m_ongoingDiv.appendChild(m_taskPriority);
         m_ongoingDiv.appendChild(m_taskDescription);
-        this.ongoingTodoContainer.appendChild(m_ongoingDiv)
+        m_ongoingDiv.appendChild(m_dueDate);
+        m_ongoingDiv.appendChild(m_taskEditButton);
+        m_ongoingDiv.appendChild(m_taskCompleteButton); 
+        m_ongoingDiv.appendChild(m_taskDeleteButton);
+        this.ongoingTodoContainer.appendChild(m_ongoingDiv);
        
+    }
+    addCompleteTodoDiv(m_todoTask){
+        const m_completedDiv = document.createElement("div");
+        m_completedDiv.classList.add("completed-task");
+        
+        const m_incompleteButton = document.createElement("button");
+        m_incompleteButton.classList.add("task-incomplete");
+
+        const m_completedName = document.createElement("p");
+        m_completedName.classList.add("completed-name");
+        m_completedName.textContent = m_todoTask.getName();
+
+        const m_completedDate = document.createElement("p");
+        m_completedDate.classList.add("completed-date");
+        m_completedDate.textContent = "11-11-1111";
+
+        const m_completedDeleteButton = document.createElement("button");
+        m_completedDeleteButton.classList.add("completed-delete");
+        m_completedDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
+        //clicking has to delete this task from the todo list
+        
+        const m_trashIcon = document.createElement("i");
+        m_trashIcon.classList.add("fa-solid", "fa-trash");
+        m_completedDeleteButton.appendChild(m_trashIcon);
+
+        m_completedDiv.appendChild(m_incompleteButton);
+        m_completedDiv.appendChild(m_completedName);
+        m_completedDiv.appendChild(m_completedDate);
+        m_completedDiv.appendChild(m_completedDeleteButton);
+        this.completedTodoContainer.appendChild(m_completedDiv);
     }
     highlightSelectProject(){
         //if any are selected remove them
@@ -208,17 +260,3 @@ export default class Display{
     }
 
 }
-
-
-
- /*
-<div class="ongoing-task">
-    <p class="due-in">Due in 20 Days!</p>
-    <p class="task-name">Task 1</p>
-    <p class="task-description">Description</p>
-    <p class="task-dueDate">Due Date: 01-01-2000</p>
-    <button class="task-edit">Edit</button>
-    <button class="task-complete">Mark Complete</button>
-    <button class="task-delete" aria-label="delete this ongoing task"><i class="fa-solid fa-trash"></i></button>
-</div> 
-*/

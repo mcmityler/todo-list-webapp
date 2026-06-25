@@ -9,6 +9,9 @@ export default class ProjectManager{
     addProject(name){
         const _newProject = new Project(name);
         this.projects.push(_newProject);
+        if(this.projects.length === 1){
+            this.selected = this.projects[0];
+        }
     }
     deleteProject(project){
         console.log(this.selected === project);
@@ -30,6 +33,9 @@ export default class ProjectManager{
     getSelectedTodos(){
         const m_selected = this.projects.find(_project => _project.uniqueID === this.selected.uniqueID);
         console.log(m_selected);
+        if(m_selected === undefined){
+            return [];
+        }
         return m_selected.getTodoList();
     }
     logProjects(){

@@ -21,6 +21,7 @@ display.projectManager.addProject("Default");
 display.projectManager.selectProject(display.projectManager.projects[0]);
 display.updateProjectList();
 display.projectManager.projects[0].addTodoTask({name: "Task at hand", description: "This is a crazy description"});
+display.projectManager.projects[0].todoList[0].setCompleteness(true)
 display.updateTodoSections();
 
 

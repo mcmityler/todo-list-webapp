@@ -26,7 +26,7 @@
 
         <div class="todos-container">
             <div class="ongoing-container">
-                <h2>To Dos - Default</h2>
+                <h2>To Dos - <span class="todo-project">********</span></h2>
                 <div class="project-sort-container">
                     <label for="project-sort-dropdown">Sort By: </label>
                     <select name="project-sort-dropdown" id="project-sort-dropdown">
@@ -71,12 +71,12 @@
             <h2 class="todo-form-title">New <span class="todo-project">*********</span> To Do</h2>
             <form id="new-todo-form">
                 <div class="todo-name-container input-container">
-                    <input type="text" name="todo-name-input" id="todo-name-input" placeholder="" maxlength="26" required autocomplete="off"/>
+                    <input type="text" name="todo-name-input" id="todo-name-input" placeholder="" maxlength="15" required autocomplete="off"/>
                     <label for="todo-name-input" class="hover-pointer">Task Name<span class="asterisk">*</span></label>
                 </div>
 
                 <label for="todo-description" class="hover-pointer" >Description: </label>
-                <textarea name="todo-description" id="todo-description" placeholder="" maxlength="50" autocomplete="off"></textarea>
+                <textarea name="todo-description" id="todo-description" placeholder="" maxlength="80" autocomplete="off"></textarea>
                 
                 <label class="new-priority-title" for="">Priority:</label>
                 <div class="priority-initial-container">

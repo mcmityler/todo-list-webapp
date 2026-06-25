@@ -22,6 +22,13 @@ export default class ToDo{
     getName(){
         return this.name;
     }
+    getDueDate(){
+        if(this.hasDueDate === "on"){
+            return this.dueDate
+        }else{
+            return "No date set!";
+        }
+    }
     getPriorityExclamation(){
         let m_exclamation = "";
         for (let i = 0; i < this.priority; i++) {

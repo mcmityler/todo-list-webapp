@@ -249,7 +249,7 @@ h2{
   grid-template-columns: 1fr 50px;
   grid-template-rows: 20px 40px 1fr 40px 40px;
   padding: 5px;
-  border: 3px solid var(--dark-blue);
+  border: 5px solid var(--dark-blue);
   box-shadow: 3px 3px 10px var(--dark-color);
   transition: all 0.2s ease;
 }
@@ -321,7 +321,10 @@ h2{
 .ongoing-task .task-description{
   grid-column: 1/-1;
 }
+.task-description{
+  overflow-wrap: break-word;
 
+}
 /* COMPLETED TO DO SECTION STYLING */
 .completed-container{
   background-color: var(--brown);
@@ -336,24 +339,24 @@ h2{
   grid-template-rows: 40px;
   grid-auto-rows: 40px;
   gap: 10px;
-  border: 3px solid var(--dark-blue);
+  border: px solid var(--dark-blue);
   overflow: auto;
 }
 .completed-task{
   display: grid;
   grid-template-columns: 1fr 120px 40px
 }
-.task-uncomplete{
+.task-incomplete{
   grid-row: 1/-1;
   grid-column: 1/-1;
   background-color: var(--light-brown);
   border: none;
   transition: all 0.2s ease;
 }
-.task-uncomplete:hover{
+.task-incomplete:hover{
   background-color: var(--blue);
 }
-.task-uncomplete:active{
+.task-incomplete:active{
   background-color: var(--dark-blue);
 }
 .completed-name{
@@ -365,10 +368,10 @@ h2{
   font-size: 1.2rem;
   text-decoration:line-through 3px var(--dark-blue);
 }
-.task-uncomplete:hover + .completed-name{
+.task-incomplete:hover + .completed-name{
   text-decoration:none;
 }
-.task-uncomplete:active + .completed-name{
+.task-incomplete:active + .completed-name{
   color: var(--light-color)
 }
 .completed-date{
