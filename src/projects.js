@@ -19,6 +19,9 @@ export default class Project{
     deleteTodoTask(m_todo){
         this.todoList = this.todoList.filter(_task => _task !== m_todo);
     }
+    findTodoTask(m_todoID){
+        return this.todoList.find(m_todo => m_todoID === m_todo.uniqueID);
+    }
     getUniqueID(){
         return this.uniqueID;
     }

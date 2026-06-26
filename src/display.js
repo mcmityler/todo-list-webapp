@@ -24,7 +24,11 @@ export default class Display{
 
         this.projectSortDropdown = document.getElementById("project-sort-dropdown");
         this.projectSortDropdown.addEventListener("change", ()=>{this.updateTodoSections()});
+        
+        this.projectNewEditTitle = document.querySelector(".todo-form-NewEdit");
 
+        this.currentEditingTodoID = "";
+        this.isEditing = false;
 
     }
 
@@ -34,7 +38,11 @@ export default class Display{
     }
     openNewTodoForm(){
         this.newTodoForm.reset(); //make sure form is empty every time you open
-        console.log("need to set project title here")
+        if(this.isEditing){
+            this.projectNewEditTitle.textContent = "Edit";
+        }else{
+            this.projectNewEditTitle.textContent = "New";
+        }
         this.newTodoDialog.showModal();
     }
     closeDialogs(){
@@ -112,13 +120,27 @@ export default class Display{
             priority
         })
         const m_selectedProject = this.projectManager.getCurrentSelected();
-        m_selectedProject.addTodoTask({
-            name,
-            description,
-            hasDueDate,
-            dueDate,
-            priority
-        })
+        if(this.isEditing === false){
+            m_selectedProject.addTodoTask({
+                name,
+                description,
+                hasDueDate,
+                dueDate,
+                priority
+            })
+        }
+        else if(this.isEditing === true){
+            const m_selectedToEdit = m_selectedProject.findTodoTask(this.currentEditingTodoID);
+            m_selectedToEdit.editTodo({
+                name,
+                description,
+                hasDueDate,
+                dueDate,
+                priority
+            })
+            this.isEditing = false;
+        }
+        
         // const projectName = formData.get('project-name-input');
         // this.projectManager.addProject(projectName);
         this.projectManager.logProjects();
@@ -198,8 +220,11 @@ export default class Display{
         const m_dueInDate = document.createElement("p");
         m_dueInDate.classList.add("due-in");
         //DO CALCULATION HERE FOR HOW LONG UNTIL DUE
-        m_dueInDate.textContent = "Due in not set up";
+        m_dueInDate.textContent = m_todoTask.getDueIn() > -1 ? `Due in ${m_todoTask.getDueIn() + 1} Day(s)` : m_todoTask.hasDueDate === "on" ? "Overdue" : "";
+        if(m_todoTask.getDueIn() < 3){
+            m_dueInDate.classList.add("due-in-three");
 
+        }
         const m_taskName = document.createElement("p");
         m_taskName.classList.add("task-name");
         m_taskName.textContent = m_todoTask.getName();
@@ -220,6 +245,12 @@ export default class Display{
         const m_taskEditButton = document.createElement("button");
         m_taskEditButton.classList.add("task-edit", "hover-pointer");
         m_taskEditButton.textContent = "Edit";
+        m_taskEditButton.addEventListener("click", ()=>{
+            this.currentEditingTodoID = m_todoTask.uniqueID;
+            this.isEditing = true;
+            this.openNewTodoForm();
+            this.formFillOldValues();
+        })
         //need to set this up completely. also need to set up edit dialog
 
         const m_taskCompleteButton = document.createElement("button");
@@ -309,5 +340,21 @@ export default class Display{
         const m_projectName = this.projectManager.getCurrentSelected().getProjectName();
         m_projectTodoTitle.textContent = m_projectName;
         m_newTodoTitle.textContent = m_projectName;
+    }
+    formFillOldValues(){
+        const m_editingTodo = this.projectManager.getCurrentSelected().findTodoTask(this.currentEditingTodoID);
+        const todoNameInput = document.getElementById("todo-name-input");
+        const todoDescriptionInput = document.getElementById("todo-description");
+        const priority = document.getElementById(`priority-${m_editingTodo.getPriority()}`);
+        const dateCheckbox = document.getElementById("due-date-checkbox");
+        const dateSelector = document.getElementById("due-date-selector");
+
+        todoNameInput.value = m_editingTodo.name;
+        todoDescriptionInput.value = m_editingTodo.description;
+        priority.checked = true;
+        dateCheckbox.checked = m_editingTodo.hasDueDate;
+        dateSelector.valueAsDate = new Date(m_editingTodo.dueDate);
+            console.log(new Date(m_editingTodo.dueDate));
+        
     }
 }

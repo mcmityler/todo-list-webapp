@@ -3,7 +3,7 @@ export default class ToDo{
         this.name = name;
         this.description = description;
         this.hasDueDate = hasDueDate;
-        this.dueDate = new Date(dueDate).toLocaleDateString('en-GB');
+        this.dueDate = dueDate;
         this.priority = +priority;
         this.completed = false; 
         this.completedDate = ""; 
@@ -12,7 +12,7 @@ export default class ToDo{
     }
 
     setCompletedDate(){
-        this.completedDate = new Date().toLocaleDateString('en-GB');
+        this.completedDate = new Date().toLocaleDateString("en-US");
     }
     setCompleteness(completed){
         this.completed = completed
@@ -36,6 +36,15 @@ export default class ToDo{
             return "No date set";
         }
     }
+    getDueIn(){
+        if(this.hasDueDate !== "on"){
+            return -1;
+        }
+        const mdy = this.dueDate.split('-');
+        const m_dueDate = new Date(this.dueDate);
+        console.log(m_dueDate)
+        return Math.round((m_dueDate - new Date()) / (1000 * 60 * 60 * 24));
+    }
     getPriority(){
         return this.priority;
     }
@@ -49,11 +58,12 @@ export default class ToDo{
     getDescription(){
         return this.description;
     }
-    editTodo({name, description, dueDate, priority}){
+    editTodo({name, description, hasDueDate, dueDate, priority}){
         this.name = name;
         this.description = description;
+        this.hasDueDate = hasDueDate;
         this.dueDate = dueDate;
-        this.priority = priority;
+        this.priority = +priority;
     }
     getCompletedDate(){
         return this.completedDate;

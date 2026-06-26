@@ -40,7 +40,7 @@ body {
 .hover-pointer{
   cursor: pointer;
 }
-h2{
+h2,.todo-form-NewEdit{
   font-family: "BebasNeue", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 1.8rem;
   margin: 10px;
@@ -266,6 +266,11 @@ h2{
   grid-column: 1/-1;
   text-align: center;
   color: var(--dark-blue);
+
+}
+.due-in-three{
+  color: var(--delete-color);
+  font-size: 1.1rem
 
 }
 .ongoing-task .task-name, .ongoing-task .task-priority{
