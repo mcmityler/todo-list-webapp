@@ -223,7 +223,6 @@ export default class Display{
         m_dueInDate.textContent = m_todoTask.getDueIn() > -1 ? `Due in ${m_todoTask.getDueIn() + 1} Day(s)` : m_todoTask.hasDueDate === "on" ? "Overdue" : "";
         if(m_todoTask.getDueIn() < 3){
             m_dueInDate.classList.add("due-in-three");
-
         }
         const m_taskName = document.createElement("p");
         m_taskName.classList.add("task-name");
@@ -231,6 +230,13 @@ export default class Display{
 
         const m_taskPriority = document.createElement("p");
         m_taskPriority.classList.add("task-priority");
+        if (m_todoTask.getPriority() === 5){
+            m_taskPriority.classList.add("high-priority");
+        }
+        else if(m_todoTask.getPriority() > 2){
+            m_taskPriority.classList.add("mid-priority");
+        
+        }
         m_taskPriority.textContent = m_todoTask.getPriorityExclamation();
 
         const m_taskDescription = document.createElement("p");

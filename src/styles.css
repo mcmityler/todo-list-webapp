@@ -29,6 +29,8 @@
   --delete-color: #c94747;
   --delete-active-color: #773030;
   --dark-color: #291d0e;
+  --priority-high-color: #db2525;
+  --priority-mid-color: #ffe600;
 }
 
 body {
@@ -269,7 +271,7 @@ h2,.todo-form-NewEdit{
 
 }
 .due-in-three{
-  color: var(--delete-color);
+  color: var(--priority-high-color);
   font-size: 1.1rem
 
 }
@@ -280,6 +282,15 @@ h2,.todo-form-NewEdit{
 }
 .task-priority{
   text-align: center;
+  color: var(--dark-blue);
+}
+.mid-priority{
+  color: var(--priority-mid-color);
+
+}
+.high-priority{
+  color: var(--priority-high-color);
+  font-size: 1.1rem;
 }
 .task-name{
   padding-left: 10px;
