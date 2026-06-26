@@ -1,3 +1,4 @@
+import { format, addDays, differenceInDays} from "date-fns";
 export default class ToDo{
     constructor(name, description = "", hasDueDate = false, dueDate = "", priority = 1){
         this.name = name;
@@ -12,7 +13,7 @@ export default class ToDo{
     }
 
     setCompletedDate(){
-        this.completedDate = new Date().toLocaleDateString("en-US");
+        this.completedDate = format(new Date(), "MM/dd/yyyy");
     }
     setCompleteness(completed){
         this.completed = completed
@@ -31,7 +32,7 @@ export default class ToDo{
     }
     getDueDate(){
         if(this.hasDueDate === "on"){
-            return this.dueDate
+            return format(addDays(new Date(this.dueDate),1), "MM/dd/yyyy")
         }else{
             return "No date set";
         }
@@ -40,10 +41,7 @@ export default class ToDo{
         if(this.hasDueDate !== "on"){
             return -1;
         }
-        const mdy = this.dueDate.split('-');
-        const m_dueDate = new Date(this.dueDate);
-        console.log(m_dueDate)
-        return Math.round((m_dueDate - new Date()) / (1000 * 60 * 60 * 24));
+        return differenceInDays(new Date(this.dueDate), new Date());
     }
     getPriority(){
         return this.priority;
