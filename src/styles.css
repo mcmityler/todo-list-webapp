@@ -351,13 +351,19 @@ h2,.todo-form-NewEdit{
   border-radius: 10px;
   display: grid;
   grid-template-rows: 50px 180px;
+  grid-template-columns: 1fr 1fr;
   padding: 10px
+}
+.date-completed-title{
+  margin-right: 40px;
+  text-align: right;
 }
 .completed-todos{
   display: grid;
   grid-template-rows: 40px;
   grid-auto-rows: 40px;
   gap: 10px;
+  grid-column: 1/-1;
   border: px solid var(--dark-blue);
   overflow: auto;
 }
