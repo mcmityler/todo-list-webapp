@@ -1,17 +1,4 @@
-@font-face {
-    font-family: 'Allura';
-    src: url('./fonts/Manrope-VariableFont_wght.woff2') format('woff2'),
-        url('./fonts/Manrope-VariableFont_wght.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'BebasNeue';
-    src: url('./fonts/BebasNeue-Regular.woff2') format('woff2'),
-        url('./fonts/BebasNeue-Regular.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
+
 *{
   margin: 0;
   padding: 0;
@@ -32,7 +19,20 @@
   --priority-high-color: #db2525;
   --priority-mid-color: #ffe600;
 }
-
+@font-face {
+    font-family: 'Allura';
+    src: url('./fonts/Manrope-VariableFont_wght.woff2') format('woff2'),
+        url('./fonts/Manrope-VariableFont_wght.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('./fonts/BebasNeue-Regular.woff2') format('woff2'),
+        url('./fonts/BebasNeue-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
 body {
   background-color: var(--light-color);
   height: 100vh;
