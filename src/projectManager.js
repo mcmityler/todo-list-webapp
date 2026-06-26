@@ -4,6 +4,7 @@ export default class ProjectManager{
     constructor(){
         this.projects = []; //array of project classes
         this.selected = {}; //what project is currently selected
+        this.loadProjects = this.loadProjects.bind(this);
     }
 
     addProject(name){
@@ -32,7 +33,7 @@ export default class ProjectManager{
     }
     getSelectedTodos(){
         const m_selected = this.projects.find(_project => _project.uniqueID === this.selected.uniqueID);
-        console.log(m_selected);
+        // console.log(m_selected);
         if(m_selected === undefined){
             return [];
         }
@@ -44,5 +45,34 @@ export default class ProjectManager{
     selectProject(project){
         this.selected = project;
         console.log(this.selected.name);
+    }
+    saveProjects(){
+        localStorage.setItem("projects", JSON.stringify(this.projects));
+        console.log("saved files")
+    }
+    loadProjects(){
+        this.projects.length = 0;
+        const projectsArray = JSON.parse(localStorage.getItem("projects"));
+        if(projectsArray !== undefined){
+            for (let i = 0; i < projectsArray.length; i++) {
+                this.addProject(projectsArray[i].name);
+                console.log("loaded");
+                console.log(projectsArray);
+                const m_todoList = projectsArray[i].todoList;
+                for (let k = 0; k < m_todoList.length; k++) {
+                    console.log(projectsArray[i].todoList);
+                    console.log( m_todoList[k].completedDate);
+                    this.projects[i].addTodoTask({
+                        name: m_todoList[k].name,
+                        description: m_todoList[k].description,
+                        hasDueDate: m_todoList[k].hasDueDate,
+                        dueDate: m_todoList[k].dueDate,
+                        priority: m_todoList[k].priority,
+                        completed: m_todoList[k].completed,
+                        completedDate: m_todoList[k].completedDate
+                    });
+                }
+            }
+        }
     }
 }

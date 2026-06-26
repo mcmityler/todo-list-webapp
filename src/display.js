@@ -55,6 +55,8 @@ export default class Display{
         const projectName = formData.get('project-name-input');
         this.projectManager.addProject(projectName);
         this.projectManager.logProjects();
+        this.projectManager.saveProjects();
+
         this.updateProjectList();
         this.newProjectDialog.close()
     }
@@ -89,6 +91,7 @@ export default class Display{
         m_projectDelete.ariaLabel = `Delete ${m_project.getProjectName()} project`;
         m_projectDelete.addEventListener("click", () => {
             this.projectManager.deleteProject(m_project);
+            this.projectManager.saveProjects();
             this.updateProjectList();
             this.updateTodoSections();
         })
@@ -146,6 +149,8 @@ export default class Display{
         this.projectManager.logProjects();
         this.updateTodoSections();
         console.log("clicked");
+        this.projectManager.saveProjects();
+
         this.newTodoDialog.close()
     }
     updateTodoSections(){
@@ -265,6 +270,7 @@ export default class Display{
         m_taskCompleteButton.addEventListener("click", ()=>{
             m_todoTask.setCompleteness(true);
             this.updateTodoSections();
+            this.projectManager.saveProjects();
         })
         //Clicking has to move from here to the completed section somehow
 
@@ -273,6 +279,7 @@ export default class Display{
         m_taskDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
         m_taskDeleteButton.addEventListener("click", ()=>{
             this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
+            this.projectManager.saveProjects();
             this.updateTodoSections();
         });
         //clicking has to delete this task from the todo list
@@ -300,6 +307,7 @@ export default class Display{
         m_incompleteButton.classList.add("task-incomplete", "hover-pointer");
         m_incompleteButton.addEventListener("click", ()=>{
             m_todoTask.setCompleteness(false);
+            this.projectManager.saveProjects();
             this.updateTodoSections();
         })
 
@@ -316,6 +324,7 @@ export default class Display{
         m_completedDeleteButton.ariaLabel = "delete " + m_todoTask.getName();
         m_completedDeleteButton.addEventListener("click", ()=>{
             this.projectManager.getCurrentSelected().deleteTodoTask(m_todoTask);
+            this.projectManager.saveProjects();
             this.updateTodoSections();
         });
         //clicking has to delete this task from the todo list

@@ -1,13 +1,13 @@
 import { format, addDays, differenceInDays} from "date-fns";
 export default class ToDo{
-    constructor(name, description = "", hasDueDate = false, dueDate = "", priority = 1){
+    constructor(name, description = "", hasDueDate = false, dueDate = "", priority = 1, completed = false, completedDate = ""){
         this.name = name;
         this.description = description;
         this.hasDueDate = hasDueDate;
         this.dueDate = dueDate;
         this.priority = +priority;
-        this.completed = false; 
-        this.completedDate = ""; 
+        this.completed = completed; 
+        this.completedDate = completedDate; 
         this.uniqueID = crypto.randomUUID();
 
     }
