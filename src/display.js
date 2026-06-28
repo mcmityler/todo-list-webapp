@@ -365,14 +365,12 @@ export default class Display{
         const todoNameInput = document.getElementById("todo-name-input");
         const todoDescriptionInput = document.getElementById("todo-description");
         const priority = document.getElementById(`priority-${m_editingTodo.getPriority()}`);
-        const dateCheckbox = document.getElementById("due-date-checkbox");
-        const dateSelector = document.getElementById("due-date-selector");
 
         todoNameInput.value = m_editingTodo.name;
         todoDescriptionInput.value = m_editingTodo.description;
         priority.checked = true;
-        dateCheckbox.checked = m_editingTodo.hasDueDate;
-        dateSelector.valueAsDate = new Date(m_editingTodo.dueDate);
+        this.hasDateCheckbox.checked = m_editingTodo.hasDueDate;
+        this.dueDateInput.valueAsDate = new Date(m_editingTodo.dueDate);
             console.log(new Date(m_editingTodo.dueDate));
         
     }
