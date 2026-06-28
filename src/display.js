@@ -2,21 +2,22 @@ import ProjectManager from "./projectManager.js"
 
 export default class Display{
     constructor(){
-        this.closeNewProject = document.querySelector(".close-project-dialog-button");
+        this.projectManager = new ProjectManager();
+
+        this.initializeHTML();
+        
         this.newProjectDialog = document.getElementById("new-project-dialog");
         this.newProjectForm = document.getElementById("new-project-form");
-        this.closeNewProject.addEventListener("click", ()=>{this.closeDialogs()});
         this.newProjectForm.addEventListener("submit", ()=>{this.submitNewProjectForm()});
-        this.projectManager = new ProjectManager();
+
         this.openNewProject = document.querySelector(".new-project-button");
         this.openNewProject.addEventListener("click", ()=>{this.openNewProjectForm()});
 
         this.projectListContainer = document.querySelector(".project-list-container");
 
-        this.closeNewTodo = document.querySelector(".close-todo-dialog-button");
+        
         this.newTodoDialog = document.getElementById("new-todo-dialog");
         this.newTodoForm = document.getElementById("new-todo-form");
-        this.closeNewTodo.addEventListener("click", ()=>{this.closeDialogs()});
         this.newTodoForm.addEventListener("submit", ()=>{this.submitNewTodoForm()});
 
         this.ongoingTodoContainer = document.querySelector(".ongoing-todos");
@@ -34,6 +35,12 @@ export default class Display{
         this.currentEditingTodoID = "";
         this.isEditing = false;
 
+    }
+    initializeHTML(){
+        const closeNewProject = document.querySelector(".close-project-dialog-button");
+        closeNewProject.addEventListener("click", ()=>{this.closeDialogs()});
+        const closeNewTodo = document.querySelector(".close-todo-dialog-button");
+        closeNewTodo.addEventListener("click", ()=>{this.closeDialogs()});
     }
 
     openNewProjectForm(){
