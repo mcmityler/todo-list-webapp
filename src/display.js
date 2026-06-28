@@ -26,6 +26,10 @@ export default class Display{
         this.projectSortDropdown.addEventListener("change", ()=>{this.updateTodoSections()});
         
         this.projectNewEditTitle = document.querySelector(".todo-form-NewEdit");
+        
+        this.hasDateCheckbox = document.getElementById("due-date-checkbox");
+        this.dueDateInput = document.getElementById("due-date-selector");
+        this.hasDateCheckbox.addEventListener("change", (event)=>{this.dueDateInput.required = event.target.checked})
 
         this.currentEditingTodoID = "";
         this.isEditing = false;

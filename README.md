@@ -1,7 +1,5 @@
 # todo-list-webapp
-To do list website made using Webpack, OOP, and SOLID  principles 
-
-Learned a bit about the date-fns library for webpack
+To do list website; the focus on this project is getting comfortable using different javascript files with classes together using webpack and import/export. Also to further practice the SOLID and OOP principles.
 
 Tutorial followed for apple-like inputs: https://www.youtube.com/watch?v=9wO594NXw34&list=PLjYwlnQbXANvVJUgAJ-plXsUDFYwv5-BW 
 
@@ -9,7 +7,6 @@ Color Palette : https://colorhunt.co/palette/bbdce5eceedfd9c4b0cfab8d
 
 Manrope Font: https://fonts.google.com/specimen/Manrope
 Bebas Neue Font: https://fonts.google.com/specimen/Bebas+Neue
-
 
 Font awesome Icons:
 
